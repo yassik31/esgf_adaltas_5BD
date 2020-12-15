@@ -73,6 +73,75 @@ hdfs dfs -cat /data/nyc_taxi/yellow_tripdata_2010-01.csv
 *list of vars*
 vendor_id,pickup_datetime,dropoff_datetime,passenger_count,trip_distance,pickup_longitude,pickup_latitude,rate_code,store_and_fwd_flag,dropoff_longitude,dropoff_latitude,payment_type,fare_amount,surcharge,mta_tax,tip_amount,tolls_amount,total_amount
 
+CREATE EXTERNAL TABLE IF NOT EXISTS esgf_2020_fall_1.${username}_nyc_taxi_ext (
+  vendor_id VARCHAR(3),
+  pickup_datetime TIMESTAMP,
+  dropoff_datetime TIMESTAMP,
+  passenger_count INT,
+  trip_distance DOUBLE,
+  pickup_longitude DOUBLE,
+  pickup_latitude DOUBLE,
+  rate_code INT,
+  store_and_fwd_flag STRING,
+  dropoff_longitude DOUBLE,
+  dropoff_latitude DOUBLE,
+  payment_type VARCHAR(3),
+  fare_amount DOUBLE,
+  surcharge DOUBLE,
+  mta_tax DOUBLE,
+  tip_amount DOUBLE,
+  tolls_amount DOUBLE,
+  total_amount DOUBLE
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+STORED AS TEXTFILE
+LOCATION 'nyc_taxi/'
+TBLPROPERTIES ('skip.header.line.count'='1');
+
+CREATE TABLE IF NOT EXISTS esgf_2020_fall_1.${username}_nyc_taxi (
+  vendor_id VARCHAR(3),
+  pickup_datetime TIMESTAMP,
+  dropoff_datetime TIMESTAMP,
+  passenger_count INT,
+  trip_distance DOUBLE,
+  pickup_longitude DOUBLE,
+  pickup_latitude DOUBLE,
+  rate_code INT,
+  store_and_fwd_flag STRING,
+  dropoff_longitude DOUBLE,
+  dropoff_latitude DOUBLE,
+  payment_type VARCHAR(3),
+  fare_amount DOUBLE,
+  surcharge DOUBLE,
+  mta_tax DOUBLE,
+  tip_amount DOUBLE,
+  tolls_amount DOUBLE,
+  total_amount DOUBLE
+)
+STORED AS ORC;
+
+INSERT OVERWRITE TABLE esgf_2020_fall_1.${username}_nyc_taxi
+SELECT 
+  vendor_id,
+  pickup_datetime,
+  dropoff_datetime,
+  passenger_count,
+  trip_distance,
+  pickup_longitude,
+  pickup_latitude,
+  rate_code,
+  store_and_fwd_flag,
+  dropoff_longitude,
+  dropoff_latitude,
+  payment_type,
+  fare_amount,
+  surcharge,
+  mta_tax,
+  tip_amount,
+  tolls_amount,
+  total_amount
+FROM esgf_2020_fall_1.${username}_nyc_taxi_ext;
+
 **Bonus 4:**
 
 Explore created ORC file and compare it with the original CSV (file size for example)
