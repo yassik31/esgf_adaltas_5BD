@@ -61,7 +61,17 @@ SELECT max(ssn) from yidrissi_drivers;
 
 **Bonus 3:**
 
-Play with a bigger data sets. Chose the most interesting for you here "hdfs dfs -ls /data/" and make the ORC table out of it.
+*Play with a bigger data sets. Chose the most interesting for you here "hdfs dfs -ls /data/" and make the ORC table out of it.*
+
+hdfs dfs -mkdir -p "nyc_taxi"
+hdfs dfs -cp /data/nyc_taxi/yellow_tripdata_2010-01.csv nyc_taxi
+
+*View content of file*
+
+hdfs dfs -cat /data/nyc_taxi/yellow_tripdata_2010-01.csv
+
+*list of vars*
+vendor_id,pickup_datetime,dropoff_datetime,passenger_count,trip_distance,pickup_longitude,pickup_latitude,rate_code,store_and_fwd_flag,dropoff_longitude,dropoff_latitude,payment_type,fare_amount,surcharge,mta_tax,tip_amount,tolls_amount,total_amount
 
 **Bonus 4:**
 
