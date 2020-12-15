@@ -1,5 +1,7 @@
 https://github.com/adaltas/esgf-2020-fall-bigdata/blob/master/modules/05.hive/lab.md
 
+correction: https://github.com/adaltas/esgf-2020-fall-bigdata/blob/corrections/modules/05.hive/lab.md
+
 Code
 --------------
 --------------
