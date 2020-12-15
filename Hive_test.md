@@ -144,6 +144,9 @@ FROM esgf_2020_fall_1.${username}_nyc_taxi_ext;
 
 
 Select * from yidrissi_nyc_taxi limit 5;
+
+
+
 **Bonus 4:**
 
 Explore created ORC file and compare it with the original CSV (file size for example)
