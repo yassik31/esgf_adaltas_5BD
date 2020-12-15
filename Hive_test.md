@@ -8,7 +8,7 @@ Code
 use esgf_2020_fall_1;
 SET hivevar:username=yidrissi;
 
-**Q2:**
+***Q2:***
 
 CREATE EXTERNAL TABLE IF NOT EXISTS esgf_2020_fall_1.${username}_drivers_ext (
   driver_id INT,
@@ -23,7 +23,7 @@ STORED AS TEXTFILE
 LOCATION 'drivers/'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
-**Q3:**
+***Q3:***
 
 CREATE TABLE IF NOT EXISTS esgf_2020_fall_1.${username}_drivers (
   driver_id INT,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS esgf_2020_fall_1.${username}_drivers (
 )
 STORED AS ORC;
 
-**Q4:**
+***Q4:***
 
 INSERT OVERWRITE TABLE esgf_2020_fall_1.${username}_drivers
 SELECT 
@@ -49,7 +49,7 @@ SELECT
   wageplan
 FROM esgf_2020_fall_1.${username}_drivers_ext;
 
-*Bonus 1 & 2:*
+**Bonus 1 & 2:**
 
 SELECT COUNT(certified) from yidrissi_drivers where certified = True;
 
@@ -59,11 +59,11 @@ SELECT max(ssn) from yidrissi_drivers;
 
 977706052
 
-*Bonus 3:*
+**Bonus 3:**
 
 Play with a bigger data sets. Chose the most interesting for you here "hdfs dfs -ls /data/" and make the ORC table out of it.
 
-*Bonus 4:*
+**Bonus 4:**
 
 Explore created ORC file and compare it with the original CSV (file size for example)
 
